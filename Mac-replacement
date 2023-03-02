@@ -1,0 +1,17 @@
+import subprocess
+import optparse
+
+otp = optparse.OptionParser()
+otp.add_option("-i" , "--interface" , dest = "interface" , help = "Enter Choose Interface !!" )
+otp.add_option("-m" , "--mac" , dest = "mac" , help = "Enter Choose Mac!!" )
+
+(otp_user , argumant) = otp.parse_args()
+
+user_interface = otp_user.interface
+user_mac = otp_user.mac
+
+print("My User Proses on")
+
+subprocess.call(["ifconfig" , user_interface , "down"])
+subprocess.call(["ifconfig" , user_interface , "hw" , "ether", user_mac])
+subprocess.call(["ifconfig" , user_interface , "up"])
